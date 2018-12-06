@@ -18,8 +18,8 @@ function fail (): never {
   throw new Error()
 }
 
-function assertValid (s: string, roman: string): void {
-  !roman.startsWith(s + s + s + s) && lookup[s] || fail()
+function assertValid (s: string, roman: string): true {
+  return !roman.startsWith(s + s + s + s) && lookup[s] && true || fail()
 }
 
 function getNextSymbol ([s1, s2]: string): string {
@@ -28,7 +28,7 @@ function getNextSymbol ([s1, s2]: string): string {
 
 function _convert (acc: number, roman: string): number {
   const s = getNextSymbol(roman)
-  return !s ? acc : assertValid(s, roman) || _convert(acc + lookup[s], roman.slice(s.length))
+  return s && assertValid(s, roman) ? _convert(acc + lookup[s], roman.slice(s.length)) : acc
 }
 
 export function convert (roman: string): number {
