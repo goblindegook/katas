@@ -1,4 +1,4 @@
-module Main exposing (fizzbuzz)
+module Fizzbuzz exposing (fizzbuzz)
 
 
 range : Int -> Int -> List Int

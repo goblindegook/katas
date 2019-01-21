@@ -1,8 +1,8 @@
-module MainTests exposing (suite)
+module FizzbuzzTests exposing (suite)
 
 import Expect exposing (Expectation)
+import Fizzbuzz exposing (..)
 import Fuzz exposing (Fuzzer, int)
-import Main exposing (..)
 import Test exposing (..)
 
 
