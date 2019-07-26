@@ -12,7 +12,7 @@ describe('fizzbuzz()', () => {
   it('replaces multiples of 5 with buzz', () => {
     expect(fizzbuzz(5, 5)).toEqual(['buzz'])
   })
-  
+
   it('replaces multiples of 3 and 5 with fizzbuzz', () => {
     expect(fizzbuzz(15, 15)).toEqual(['fizzbuzz'])
   })
@@ -29,13 +29,19 @@ describe('fizzbuzz()', () => {
     expect(fizzbuzz(5, 0)).toEqual(['buzz', 4, 'fizz', 2, 1, 'fizzbuzz'])
   })
 
-  property('has all multiples of 3 start with fizz', multiple3,
-    i => String(fizzbuzz(i, i)[0]).startsWith('fizz'))
+  property('has all multiples of 3 start with fizz', multiple3, i =>
+    String(fizzbuzz(i, i)[0]).startsWith('fizz')
+  )
 
-  property('has all multiples of 5 end with buzz', multiple5,
-    i => String(fizzbuzz(i, i)[0]).endsWith('buzz'))
+  property('has all multiples of 5 end with buzz', multiple5, i =>
+    String(fizzbuzz(i, i)[0]).endsWith('buzz')
+  )
 
-  property('yields an array the size of the range', integer, integer,
-    (start, end) => fizzbuzz(start, end).length === Math.sqrt((start - end) ** 2) + 1
+  property(
+    'yields an array the size of the range',
+    integer,
+    integer,
+    (start, end) =>
+      fizzbuzz(start, end).length === Math.sqrt((start - end) ** 2) + 1
   )
 })

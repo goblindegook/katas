@@ -1,25 +1,46 @@
 {
-  "name": "kata-template",
+  "name": "kata",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "format": "prettier --project . --write '{src,test}/**/*.{ts,tsx}' '*.js'",
-    "lint": "tslint --project . '{src,test}/**/*.{ts,tsx}'",
+    "lint": "eslint '{src,test}/**/*.ts'",
     "test": "jest"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "dependencies": {
+    "jsverify": "^0.8.3"
+  },
   "devDependencies": {
-    "@types/jest": "^23.1.1",
-    "jest": "^23.1.0",
+    "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.8.0",
     "prettier": "^1.13.5",
-    "ts-jest": "^23.1.0",
-    "tslint": "^5.10.0",
-    "tslint-config-prettier": "^1.13.0",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-immutable": "^5.0.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.2.1"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "{src,test/**/*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "transform": {
@@ -42,8 +63,5 @@
       "text",
       "html"
     ]
-  },
-  "dependencies": {
-    "jsverify": "^0.8.3"
   }
 }

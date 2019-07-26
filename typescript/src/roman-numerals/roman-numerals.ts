@@ -14,23 +14,25 @@ const lookup: { readonly [symbol: string]: number } = {
   M: 1000
 }
 
-function fail (): never {
+function fail(): never {
   throw new Error()
 }
 
-function assertValid (s: string, roman: string): true {
-  return !roman.startsWith(s + s + s + s) && lookup[s] && true || fail()
+function assertValid(s: string, roman: string): true {
+  return (!roman.startsWith(s + s + s + s) && lookup[s] && true) || fail()
 }
 
-function getNextSymbol ([s1, s2]: string): string {
+function getNextSymbol([s1, s2]: string): string {
   return s2 && lookup[s1 + s2] ? s1 + s2 : s1
 }
 
-function _convert (acc: number, roman: string): number {
+function _convert(acc: number, roman: string): number {
   const s = getNextSymbol(roman)
-  return s && assertValid(s, roman) ? _convert(acc + lookup[s], roman.slice(s.length)) : acc
+  return s && assertValid(s, roman)
+    ? _convert(acc + lookup[s], roman.slice(s.length))
+    : acc
 }
 
-export function convert (roman: string): number {
+export function convert(roman: string): number {
   return _convert(0, roman)
 }
