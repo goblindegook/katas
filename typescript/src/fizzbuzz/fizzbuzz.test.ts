@@ -1,9 +1,9 @@
 import { fizzbuzz } from './fizzbuzz'
-import { property, integer } from 'jsverify'
+import { assert, property, integer } from 'fast-check'
 
 describe('fizzbuzz()', () => {
-  const multiple3 = integer.smap(i => i * 3, i => i / 3)
-  const multiple5 = integer.smap(i => i * 5, i => i / 5)
+  const multiple3 = integer(-1000, 1000).map(i => i * 3)
+  const multiple5 = integer(-1000, 1000).map(i => i * 5)
 
   it('replaces multiples with 3 with fizz', () => {
     expect(fizzbuzz(3, 3)).toEqual(['fizz'])
@@ -29,19 +29,23 @@ describe('fizzbuzz()', () => {
     expect(fizzbuzz(5, 0)).toEqual(['buzz', 4, 'fizz', 2, 1, 'fizzbuzz'])
   })
 
-  property('has all multiples of 3 start with fizz', multiple3, i =>
-    String(fizzbuzz(i, i)[0]).startsWith('fizz')
-  )
+  it('has all multiples of 3 start with fizz', () => {
+    assert(
+      property(multiple3, i => String(fizzbuzz(i, i)[0]).startsWith('fizz'))
+    )
+  })
 
-  property('has all multiples of 5 end with buzz', multiple5, i =>
-    String(fizzbuzz(i, i)[0]).endsWith('buzz')
-  )
+  it('has all multiples of 5 start with buzz', () => {
+    assert(property(multiple5, i => String(fizzbuzz(i, i)[0]).endsWith('buzz')))
+  })
 
-  property(
-    'yields an array the size of the range',
-    integer,
-    integer,
-    (start, end) =>
-      fizzbuzz(start, end).length === Math.sqrt((start - end) ** 2) + 1
-  )
+  it('yields an array the size of the range', () => {
+    assert(
+      property(
+        integer(-1000, 1000),
+        integer(-1000, 1000),
+        (a, b) => fizzbuzz(a, b).length === Math.sqrt((a - b) ** 2) + 1
+      )
+    )
+  })
 })
