@@ -13,7 +13,7 @@ let fizzbuzz = (a: int, b: int): list(string) => {
       | (_, 0, 0) => "fizzbuzz"
       | (_, _, 0) => "buzz"
       | (_, 0, _) => "fizz"
-    | (number, _, _) => string_of_int(number)
+      | (n, _, _) => string_of_int(n)
     }
   })
 };
