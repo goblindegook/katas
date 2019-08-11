@@ -25,34 +25,26 @@ func size(start int, end int) int {
 	return end - start + 1
 }
 
-func reverse(numbers []int) []int {
-	length := len(numbers)
-	result := make([]int, length)
-	for i, n := range numbers {
-		result[length-i-1] = n
-	}
-	return result
-}
-
-func makeRange(start int, end int) []int {
-	result := make([]int, size(start, end))
-	if start > end {
-		for i := range result {
-			result[i] = end + i
-		}
-		return reverse(result)
-	}
-
-	for i := range result {
-		result[i] = start + i
+func reverse(list []string) []string {
+	length := len(list)
+	result := make([]string, length)
+	for i, v := range list {
+		result[length-i-1] = v
 	}
 	return result
 }
 
 func FizzBuzz(start int, end int) []string {
 	result := make([]string, size(start, end))
-	for i, n := range makeRange(start, end) {
-		result[i] = convert(n)
+	if start > end {
+		for idx := range result {
+			result[idx] = convert(end + idx)
+		}
+		return reverse(result)
+	}
+
+	for idx := range result {
+		result[idx] = convert(start + idx)
 	}
 	return result
 }
