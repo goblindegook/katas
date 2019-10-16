@@ -9,12 +9,11 @@ fn convert(n: i32) -> String {
 
 pub fn fizzbuzz(a: i32, b: i32) -> Vec<String> {
   let ascending = b > a;
-  let min = if ascending { a } else { b };
-  let max = 1 + if ascending { b } else { a };
+  let (min, max) = if ascending { (a, b) } else { (b, a) };
 
   let mut range: Vec<String> = Vec::new();
 
-  for i in min..max {
+  for i in min..max + 1 {
     range.push(convert(i))
   }
 
