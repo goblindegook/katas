@@ -1,3 +1,5 @@
+use std::ops::RangeInclusive;
+
 fn convert(n: i32) -> String {
   return match (n % 5, n % 3) {
     (0, 0) => "fizzbuzz".to_string(),
@@ -11,15 +13,13 @@ pub fn fizzbuzz(a: i32, b: i32) -> Vec<String> {
   let ascending = b > a;
   let (min, max) = if ascending { (a, b) } else { (b, a) };
 
-  let mut range: Vec<String> = Vec::new();
-
-  for i in min..max + 1 {
-    range.push(convert(i))
-  }
+  let mut result = RangeInclusive::new(min, max)
+    .map(convert)
+    .collect::<Vec<_>>();
 
   if !ascending {
-    range.reverse()
+    result.reverse();
   }
 
-  return range;
+  return result;
 }
