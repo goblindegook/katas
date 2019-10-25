@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-fn lookup(i: &str) -> u16 {
+fn lookup(symbol: &str) -> u16 {
   let value_of: HashMap<&str, u16> = [
     ("CM", 900),
     ("CD", 400),
@@ -20,7 +20,7 @@ fn lookup(i: &str) -> u16 {
   .cloned()
   .collect();
 
-  let key = &i.to_uppercase()[..];
+  let key = &symbol.to_uppercase()[..];
 
   return if value_of.contains_key(key) {
     value_of[key]
@@ -38,20 +38,17 @@ fn split_numeral(numeral: String) -> (String, String) {
     0
   };
 
-  return (
-    String::from(&numeral[..range]),
-    String::from(&numeral[range..]),
-  );
+  return (numeral[..range].to_string(), numeral[range..].to_string());
 }
 
-fn convert(total: u16, index: u16, numeral: String) -> Result<u16, String> {
+fn rec_to_int(total: u16, index: u16, numeral: String) -> Result<u16, String> {
   if numeral.len() == 0 {
     return Ok(total);
   }
 
   let (head, rest) = split_numeral(numeral.clone());
 
-  if head.len() > 0 && numeral.starts_with(&format!("{}{}{}{}", head, head, head, head)) {
+  if head.len() > 0 && rest.starts_with(&format!("{}{}{}", head, head, head)) {
     return Err(format!("unexpected symbol at index {}", index + 3));
   }
 
@@ -71,9 +68,9 @@ fn convert(total: u16, index: u16, numeral: String) -> Result<u16, String> {
     ));
   }
 
-  return convert(total + value, index + head.len() as u16, rest);
+  return rec_to_int(total + value, index + head.len() as u16, rest);
 }
 
 pub fn to_int(numeral: String) -> Result<u16, String> {
-  return convert(0, 0, numeral);
+  return rec_to_int(0, 0, numeral);
 }
