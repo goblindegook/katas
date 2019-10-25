@@ -34,6 +34,7 @@ func reverse(list []string) []string {
 	return result
 }
 
+// FizzBuzz ...
 func FizzBuzz(start int, end int) []string {
 	result := make([]string, size(start, end))
 	if start > end {

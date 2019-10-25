@@ -14,22 +14,31 @@ const lookup: { readonly [symbol: string]: number } = {
   M: 1000
 }
 
-function assertValid(s: string, numeral: string): void {
-  if (numeral.startsWith(s + s + s + s) || !lookup[s]) {
+function splitNumeral(numeral: string): [string, string] {
+  const [s1 = '', s2 = ''] = numeral
+  const head = s2 && lookup[s1 + s2] ? s1 + s2 : s1
+  const rest = numeral.slice(head.length)
+  return [head, rest]
+}
+
+function assertValid(head: string, rest: string): void {
+  const [after] = splitNumeral(rest)
+  const isInvalid =
+    rest.startsWith(head + head + head) ||
+    !lookup[head] ||
+    lookup[head] < lookup[after]
+
+  if (head && isInvalid) {
     throw new Error()
   }
 }
 
-function getNextSymbol([s1, s2]: string): string | undefined {
-  return s2 && lookup[s1 + s2] ? s1 + s2 : s1
-}
-
-function _convert(acc: number, numeral: string): number {
-  const s = getNextSymbol(numeral)
-  s && assertValid(s, numeral)
-  return s ? _convert(acc + lookup[s], numeral.slice(s.length)) : acc
+function recursiveConvert(acc: number, numeral: string): number {
+  const [head, rest] = splitNumeral(numeral)
+  assertValid(head, rest)
+  return head ? recursiveConvert(acc + lookup[head], rest) : acc
 }
 
 export function convert(numeral: string): number {
-  return _convert(0, numeral)
+  return recursiveConvert(0, numeral)
 }
