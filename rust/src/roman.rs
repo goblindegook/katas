@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 fn lookup(symbol: &str) -> u16 {
-  let value_of: HashMap<&str, u16> = [
+  let values: HashMap<&str, u16> = [
     ("CM", 900),
     ("CD", 400),
     ("XC", 90),
@@ -21,12 +21,7 @@ fn lookup(symbol: &str) -> u16 {
   .collect();
 
   let key = &symbol.to_uppercase()[..];
-
-  return if value_of.contains_key(key) {
-    value_of[key]
-  } else {
-    0
-  };
+  return *values.get(key).unwrap_or(&0);
 }
 
 fn split_numeral(numeral: String) -> (String, String) {
