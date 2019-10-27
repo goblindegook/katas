@@ -24,7 +24,7 @@ fn lookup(symbol: &str) -> u16 {
   return *values.get(key).unwrap_or(&0);
 }
 
-fn split_numeral(numeral: String) -> (String, String) {
+fn split_numeral(numeral: &str) -> (&str, &str) {
   let range = if numeral.len() > 1 && lookup(&numeral[..2]) > 0 {
     2
   } else if numeral.len() > 0 {
@@ -33,15 +33,15 @@ fn split_numeral(numeral: String) -> (String, String) {
     0
   };
 
-  return (numeral[..range].to_string(), numeral[range..].to_string());
+  return (&numeral[..range], &numeral[range..]);
 }
 
-fn rec_to_int(total: u16, index: u16, numeral: String) -> Result<u16, String> {
+fn rec_to_int(total: u16, index: u16, numeral: &str) -> Result<u16, String> {
   if numeral.len() == 0 {
     return Ok(total);
   }
 
-  let (head, rest) = split_numeral(numeral.clone());
+  let (head, rest) = split_numeral(&numeral);
 
   if head.len() > 0 && rest.starts_with(&format!("{}{}{}", head, head, head)) {
     return Err(format!("unexpected symbol at index {}", index + 3));
@@ -53,7 +53,7 @@ fn rec_to_int(total: u16, index: u16, numeral: String) -> Result<u16, String> {
     return Err(format!("invalid symbol at index {}", index));
   }
 
-  let (after, _) = split_numeral(rest.clone());
+  let (after, _) = split_numeral(&rest);
   let value_after = lookup(&after);
 
   if value < value_after {
@@ -63,9 +63,9 @@ fn rec_to_int(total: u16, index: u16, numeral: String) -> Result<u16, String> {
     ));
   }
 
-  return rec_to_int(total + value, index + head.len() as u16, rest);
+  return rec_to_int(total + value, index + head.len() as u16, &rest);
 }
 
-pub fn to_int(numeral: String) -> Result<u16, String> {
+pub fn to_int(numeral: &str) -> Result<u16, String> {
   return rec_to_int(0, 0, numeral);
 }
