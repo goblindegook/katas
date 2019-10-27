@@ -43,7 +43,7 @@ fn rec_to_int(total: u16, index: u16, numeral: &str) -> Result<u16, String> {
 
   let (head, rest) = split_numeral(&numeral);
 
-  if head.len() > 0 && rest.starts_with(&format!("{}{}{}", head, head, head)) {
+  if head.len() == 1 && rest.starts_with(&format!("{}{}{}", head, head, head)) {
     return Err(format!("unexpected symbol at index {}", index + 3));
   }
 
@@ -56,7 +56,7 @@ fn rec_to_int(total: u16, index: u16, numeral: &str) -> Result<u16, String> {
   let (after, _) = split_numeral(&rest);
   let value_after = lookup(&after);
 
-  if value < value_after {
+  if value < value_after || (value_after > 0 && head.len() == 2 && head[0..1] == after[0..1]) {
     return Err(format!(
       "unexpected symbol at index {}",
       index + head.len() as u16

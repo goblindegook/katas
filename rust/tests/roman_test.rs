@@ -95,3 +95,32 @@ fn error_on_invalid_order() {
     Err("unexpected symbol at index 3".to_owned())
   );
 }
+
+#[test]
+fn error_on_ixix() {
+  assert_eq!(
+    to_int("MIXIXI"),
+    Err("unexpected symbol at index 3".to_owned())
+  );
+}
+
+#[test]
+fn error_on_ixiv() {
+  assert_eq!(
+    to_int("MIXIVI"),
+    Err("unexpected symbol at index 3".to_owned())
+  );
+}
+
+#[test]
+fn error_on_xlx() {
+  assert_eq!(
+    to_int("XLX"),
+    Err("unexpected symbol at index 2".to_owned())
+  );
+}
+
+#[test]
+fn convert_xliv_to_44() {
+  assert_eq!(to_int("XLIV"), Ok(44));
+}
