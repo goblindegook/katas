@@ -24,9 +24,10 @@ function splitNumeral(numeral: string): [string, string] {
 function assertValid(head: string, rest: string): void {
   const [after] = splitNumeral(rest)
   const isInvalid =
-    rest.startsWith(head + head + head) ||
     !lookup[head] ||
-    lookup[head] < lookup[after]
+    (head.length === 1 && rest.startsWith(head + head + head)) ||
+    lookup[head] < lookup[after] ||
+    (lookup[after] && head.length === 2 && head[0] === after[0])
 
   if (head && isInvalid) {
     throw new Error()

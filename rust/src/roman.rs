@@ -42,15 +42,14 @@ fn rec_to_int(total: u16, index: u16, numeral: &str) -> Result<u16, String> {
   }
 
   let (head, rest) = split_numeral(&numeral);
-
-  if head.len() == 1 && rest.starts_with(&format!("{}{}{}", head, head, head)) {
-    return Err(format!("unexpected symbol at index {}", index + 3));
-  }
-
   let value = lookup(&head);
 
   if value == 0 {
     return Err(format!("invalid symbol at index {}", index));
+  }
+
+  if head.len() == 1 && rest.starts_with(&format!("{}{}{}", head, head, head)) {
+    return Err(format!("unexpected symbol at index {}", index + 3));
   }
 
   let (after, _) = split_numeral(&rest);
