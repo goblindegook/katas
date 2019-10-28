@@ -107,8 +107,16 @@ fn error_on_ixix() {
 #[test]
 fn error_on_ixiv() {
   assert_eq!(
-    to_int("MIXIVI"),
-    Err("unexpected symbol at index 3".to_owned())
+    to_int("IXIV"),
+    Err("unexpected symbol at index 2".to_owned())
+  );
+}
+
+#[test]
+fn error_on_ixv() {
+  assert_eq!(
+    to_int("IXV"),
+    Err("unexpected symbol at index 2".to_owned())
   );
 }
 
