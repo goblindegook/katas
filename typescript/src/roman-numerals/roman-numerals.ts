@@ -27,6 +27,7 @@ function assertValid(head: string, rest: string): void {
     !lookup[head] ||
     lookup[head] < lookup[after] ||
     (head.length === 1 && rest.startsWith(head + head + head)) ||
+    (head.length === 2 && lookup[head] < 2 * lookup[after] + 1) ||
     (head.length === 2 && head[0] === after[0])
 
   if (head && isInvalid) {
