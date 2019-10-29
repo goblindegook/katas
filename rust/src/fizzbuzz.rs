@@ -13,13 +13,11 @@ pub fn fizzbuzz(a: i32, b: i32) -> Vec<String> {
   let ascending = b > a;
   let (min, max) = if ascending { (a, b) } else { (b, a) };
 
-  let mut result = RangeInclusive::new(min, max)
-    .map(convert)
-    .collect::<Vec<_>>();
+  let result = RangeInclusive::new(min, max).map(convert);
 
-  if !ascending {
-    result.reverse();
-  }
-
-  return result;
+  return if ascending {
+    result.collect::<Vec<_>>()
+  } else {
+    result.rev().collect::<Vec<_>>()
+  };
 }
