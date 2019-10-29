@@ -16,8 +16,8 @@ pub fn fizzbuzz(a: i32, b: i32) -> Vec<String> {
   let result = RangeInclusive::new(min, max).map(convert);
 
   return if ascending {
-    result.collect::<Vec<_>>()
+    result.collect()
   } else {
-    result.rev().collect::<Vec<_>>()
+    result.rev().collect()
   };
 }
