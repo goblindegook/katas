@@ -78,29 +78,29 @@ fn case_insensitive() {
 #[test]
 fn error_on_invalid_repetition() {
   assert_eq!(
-    to_int("MXXXXI"),
-    Err("unexpected symbol at index 4".to_owned())
+    to_int("XXXX"),
+    Err("unexpected symbol at index 3".to_owned())
   );
 }
 
 #[test]
 fn error_on_unknown_symbols() {
-  assert_eq!(to_int("MAI"), Err("invalid symbol at index 1".to_owned()));
+  assert_eq!(to_int("A"), Err("invalid symbol at index 0".to_owned()));
 }
 
 #[test]
 fn error_on_invalid_order() {
   assert_eq!(
-    to_int("MIVXI"),
-    Err("unexpected symbol at index 3".to_owned())
+    to_int("IVX"),
+    Err("unexpected symbol at index 2".to_owned())
   );
 }
 
 #[test]
 fn error_on_ixix() {
   assert_eq!(
-    to_int("MIXIXI"),
-    Err("unexpected symbol at index 3".to_owned())
+    to_int("IXIX"),
+    Err("unexpected symbol at index 2".to_owned())
   );
 }
 
