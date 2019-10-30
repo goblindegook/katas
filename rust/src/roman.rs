@@ -1,27 +1,20 @@
-use std::collections::HashMap;
-
 fn lookup(symbol: &str) -> u16 {
-  let values: HashMap<&str, u16> = [
-    ("CM", 900),
-    ("CD", 400),
-    ("XC", 90),
-    ("XL", 40),
-    ("IX", 9),
-    ("IV", 4),
-    ("M", 1000),
-    ("D", 500),
-    ("C", 100),
-    ("L", 50),
-    ("X", 10),
-    ("V", 5),
-    ("I", 1),
-  ]
-  .iter()
-  .cloned()
-  .collect();
-
-  let key = &symbol.to_uppercase()[..];
-  return *values.get(key).unwrap_or(&0);
+  return match symbol.to_uppercase().as_str() {
+    "CM" => 900,
+    "CD" => 400,
+    "XC" => 90,
+    "XL" => 40,
+    "IX" => 9,
+    "IV" => 4,
+    "M" => 1000,
+    "D" => 500,
+    "C" => 100,
+    "L" => 50,
+    "X" => 10,
+    "V" => 5,
+    "I" => 1,
+    _ => 0,
+  };
 }
 
 fn split_numeral(numeral: &str) -> (&str, &str) {
