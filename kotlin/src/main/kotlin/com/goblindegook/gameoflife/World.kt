@@ -1,9 +1,20 @@
 package com.goblindegook.gameoflife
 
-data class World (val cells: List<List<CellState>>) {
+data class World(private val cells: List<List<CellState>>) {
+  fun next(): World =
+    World(cells.mapIndexed { y, row ->
+      row.mapIndexed { x, state ->
+        when (countNeighbours(x, y)) {
+          2 -> state
+          3 -> CellState.ALIVE
+          else -> CellState.DEAD
+        }
+      }
+    })
+
   fun cellState(x: Int, y: Int): CellState = cells[x][y]
 
-  fun countNeighbours(x: Int, y: Int): Int {
+  private fun countNeighbours(x: Int, y: Int): Int {
     var count = 0
 
     for (j in y - 1..y + 1) {
