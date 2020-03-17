@@ -1,9 +1,8 @@
 package com.goblindegook.gameoflife
 
+import kotlin.test.*
 import com.goblindegook.gameoflife.CellState.ALIVE
 import com.goblindegook.gameoflife.CellState.DEAD
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 
 class WorldTest {
   @Test
@@ -17,7 +16,7 @@ class WorldTest {
         )
       ).next()
 
-    Assertions.assertEquals(DEAD, actual.cellState(1, 1))
+    assertEquals(DEAD, actual.cellState(1, 1))
   }
 
   @Test
@@ -31,7 +30,7 @@ class WorldTest {
         )
       ).next()
 
-    Assertions.assertEquals(DEAD, actual.cellState(1, 1))
+    assertEquals(DEAD, actual.cellState(1, 1))
   }
 
   @Test
@@ -45,7 +44,7 @@ class WorldTest {
         )
       ).next()
 
-    Assertions.assertEquals(ALIVE, actual.cellState(1, 1))
+    assertEquals(ALIVE, actual.cellState(1, 1))
   }
 
   @Test
@@ -59,7 +58,7 @@ class WorldTest {
         )
       ).next()
 
-    Assertions.assertEquals(ALIVE, actual.cellState(1, 1))
+    assertEquals(ALIVE, actual.cellState(1, 1))
   }
 
   @Test
@@ -73,7 +72,7 @@ class WorldTest {
         )
       ).next()
 
-    Assertions.assertEquals(DEAD, actual.cellState(1, 1))
+    assertEquals(DEAD, actual.cellState(1, 1))
   }
 
   @Test
@@ -87,6 +86,6 @@ class WorldTest {
         )
       ).next()
 
-    Assertions.assertEquals(ALIVE, actual.cellState(1, 1))
+    assertEquals(ALIVE, actual.cellState(1, 1))
   }
 }
