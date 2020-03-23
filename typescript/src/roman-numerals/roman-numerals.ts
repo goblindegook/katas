@@ -11,7 +11,7 @@ const lookup: { readonly [symbol: string]: number } = {
   CD: 400,
   D: 500,
   CM: 900,
-  M: 1000
+  M: 1000,
 }
 
 function splitNumeral(numeral: string): [string, string] {

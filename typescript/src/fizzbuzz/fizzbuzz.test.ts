@@ -2,8 +2,8 @@ import { fizzbuzz } from './fizzbuzz'
 import { assert, property, integer } from 'fast-check'
 
 describe('fizzbuzz()', () => {
-  const multiple3 = integer(-1000, 1000).map(i => i * 3)
-  const multiple5 = integer(-1000, 1000).map(i => i * 5)
+  const multiple3 = integer(-1000, 1000).map((i) => i * 3)
+  const multiple5 = integer(-1000, 1000).map((i) => i * 5)
 
   it('replaces multiples with 3 with fizz', () => {
     expect(fizzbuzz(3, 3)).toEqual(['fizz'])
@@ -31,12 +31,14 @@ describe('fizzbuzz()', () => {
 
   it('has all multiples of 3 start with fizz', () => {
     assert(
-      property(multiple3, i => String(fizzbuzz(i, i)[0]).startsWith('fizz'))
+      property(multiple3, (i) => String(fizzbuzz(i, i)[0]).startsWith('fizz'))
     )
   })
 
   it('has all multiples of 5 start with buzz', () => {
-    assert(property(multiple5, i => String(fizzbuzz(i, i)[0]).endsWith('buzz')))
+    assert(
+      property(multiple5, (i) => String(fizzbuzz(i, i)[0]).endsWith('buzz'))
+    )
   })
 
   it('yields an array the size of the range', () => {
