@@ -14,20 +14,13 @@ data class World(private val grid: List<List<CellState>>) {
 
   fun cellState(x: Int, y: Int): CellState = grid[x][y]
 
-  private fun countNeighbours(x: Int, y: Int): Int {
-    var count = 0
+  private fun isInWorld(x: Int, y: Int) = x in grid[0].indices && y in grid.indices
 
-    for (j in y - 1..y + 1) {
-      for (i in x - 1..x + 1) {
-        if (
-          (i != x || j != y) &&
-          i in grid[y].indices &&
-          j in grid.indices &&
-          cellState(j, i) === CellState.ALIVE
-        ) count++
+  private fun countNeighbours(x: Int, y: Int): Int {
+    return (y - 1..y + 1).fold(0) { count, ny ->
+      count + (x - 1..x + 1).fold(0) { rowCount, nx ->
+        rowCount + if ((nx != x || ny != y) && isInWorld(nx, ny) && cellState(ny, nx) === CellState.ALIVE) 1 else 0
       }
     }
-
-    return count
   }
 }
