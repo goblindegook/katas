@@ -22,7 +22,7 @@ data class World(private val grid: List<List<CellState>>) {
 
     return rows.sumBy { ny ->
       columns
-        .filter { nx -> nx != x || ny != y }
+        .filterNot { nx -> nx == x && ny == y }
         .sumBy { nx ->
           when (cellState(nx, ny)) {
             CellState.ALIVE -> 1
