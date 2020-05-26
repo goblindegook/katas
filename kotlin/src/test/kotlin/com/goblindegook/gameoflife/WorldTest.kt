@@ -76,7 +76,7 @@ class WorldTest {
   }
 
   @Test
-  fun `a dead cell with exactly three live neighbours becomes a live cell,`() {
+  fun `a dead cell with exactly three live neighbours becomes a live cell`() {
     val actual =
       World(
         listOf(
@@ -87,5 +87,19 @@ class WorldTest {
       ).next()
 
     assertEquals(ALIVE, actual.cellState(1, 1))
+  }
+
+  @Test
+  fun `handles non-square grids`() {
+    val actual =
+      World(
+        listOf(
+          listOf(DEAD, DEAD, ALIVE, DEAD),
+          listOf(DEAD, ALIVE, DEAD, ALIVE),
+          listOf(DEAD, DEAD, DEAD, DEAD)
+        )
+      ).next()
+
+    assertEquals(ALIVE, actual.cellState(2, 1))
   }
 }
