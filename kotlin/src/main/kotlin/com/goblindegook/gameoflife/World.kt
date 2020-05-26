@@ -20,10 +20,15 @@ data class World(private val grid: List<List<CellState>>) {
     val rows = max(0, y - 1)..min(grid[0].lastIndex, y + 1)
     val columns = max(0, x - 1)..min(grid.lastIndex, x + 1)
 
-    return rows.fold(0) { gridCount, ny ->
-      gridCount + columns.fold(0) { rowCount, nx ->
-        rowCount + if ((nx != x || ny != y) && cellState(nx, ny) === CellState.ALIVE) 1 else 0
-      }
+    return rows.sumBy { ny ->
+      columns
+        .filter { nx -> nx != x || ny != y }
+        .sumBy { nx ->
+          when (cellState(nx, ny)) {
+            CellState.ALIVE -> 1
+            else -> 0
+          }
+        }
     }
   }
 }
