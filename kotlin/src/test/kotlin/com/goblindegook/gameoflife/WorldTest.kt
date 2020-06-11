@@ -16,7 +16,7 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(DEAD, actual.cellState(1, 1))
+    assertEquals(DEAD, actual.grid[1][1])
   }
 
   @Test
@@ -30,7 +30,7 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(DEAD, actual.cellState(1, 1))
+    assertEquals(DEAD, actual.grid[1][1])
   }
 
   @Test
@@ -44,7 +44,7 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(ALIVE, actual.cellState(1, 1))
+    assertEquals(ALIVE, actual.grid[1][1])
   }
 
   @Test
@@ -58,7 +58,7 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(ALIVE, actual.cellState(1, 1))
+    assertEquals(ALIVE, actual.grid[1][1])
   }
 
   @Test
@@ -72,7 +72,7 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(DEAD, actual.cellState(1, 1))
+    assertEquals(DEAD, actual.grid[1][1])
   }
 
   @Test
@@ -86,7 +86,7 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(ALIVE, actual.cellState(1, 1))
+    assertEquals(ALIVE, actual.grid[1][1])
   }
 
   @Test
@@ -100,6 +100,6 @@ class WorldTest {
         )
       ).next()
 
-    assertEquals(ALIVE, actual.cellState(2, 1))
+    assertEquals(ALIVE, actual.grid[2][1])
   }
 }
