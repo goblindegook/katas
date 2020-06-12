@@ -7,6 +7,7 @@ This repository holds a small collection of code katas in the following language
 * [Elm](elm)
 * [Go](golang)
 * [Kotlin](kotlin)
+* [Racket](racket)
 * [ReasonML](reasonml)
 * [Rust](rust)
 * [TypeScript](typescript)
