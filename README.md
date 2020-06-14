@@ -4,6 +4,7 @@ I'm [publicly learning](https://www.swyx.io/writing/learn-in-public/) new progra
 
 This repository holds a small collection of code katas in the following languages:
 
+* [Clojure](clojure)
 * [Elm](elm)
 * [Go](golang)
 * [Kotlin](kotlin)
