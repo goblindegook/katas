@@ -14,11 +14,8 @@ const lookup: { readonly [symbol: string]: number } = {
   M: 1000,
 }
 
-function splitNumeral(numeral: string): [string, string] {
-  const [s1 = '', s2 = ''] = numeral
-  const head = s2 && lookup[s1 + s2] ? s1 + s2 : s1
-  const rest = numeral.slice(head.length)
-  return [head, rest]
+function splitNumeral([s1 = '', s2 = '', ...rest]: string): [string, string] {
+  return lookup[s1 + s2] ? [s1 + s2, rest.join('')] : [s1, s2 + rest.join('')]
 }
 
 function assertValid(head: string, rest: string): void {
