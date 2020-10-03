@@ -1,8 +1,9 @@
 package com.goblindegook.gameoflife
 
-import kotlin.test.*
 import com.goblindegook.gameoflife.CellState.ALIVE
 import com.goblindegook.gameoflife.CellState.DEAD
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class WorldTest {
   @Test

@@ -1,6 +1,12 @@
 package com.goblindegook.gameoflife
 
-import kotlin.math.*
+import java.lang.Math.max
+import java.lang.Math.min
+
+enum class CellState {
+  DEAD,
+  ALIVE
+}
 
 data class World(val grid: List<List<CellState>>) {
   fun next(): World =
@@ -14,12 +20,9 @@ data class World(val grid: List<List<CellState>>) {
       }
     })
 
-  private fun countNeighbours(x: Int, y: Int): Int {
-    val neighbouringRows = max(0, y - 1)..min(grid[0].lastIndex, y + 1)
-    val neighbouringColumns = max(0, x - 1)..min(grid.lastIndex, x + 1)
-
-    return neighbouringRows.sumBy { ny ->
-      neighbouringColumns
+  private fun countNeighbours(x: Int, y: Int) =
+    getNeighbouringRows(y).sumBy { ny ->
+      getNeighbouringColumns(x)
         .filterNot { nx -> nx == x && ny == y }
         .sumBy { nx ->
           when (grid[nx][ny]) {
@@ -28,5 +31,8 @@ data class World(val grid: List<List<CellState>>) {
           }
         }
     }
-  }
+
+  private fun getNeighbouringColumns(x: Int) = max(0, x - 1)..min(grid.lastIndex, x + 1)
+
+  private fun getNeighbouringRows(y: Int) = max(0, y - 1)..min(grid[0].lastIndex, y + 1)
 }

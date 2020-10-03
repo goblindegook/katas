@@ -1,6 +1,7 @@
 package com.goblindegook.fizzbuzz
 
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class FizzbuzzTest {
   @Test
