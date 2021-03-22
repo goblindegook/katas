@@ -4,14 +4,15 @@ I'm [publicly learning](https://www.swyx.io/writing/learn-in-public/) new progra
 
 This repository holds a small collection of code katas in the following languages:
 
-* [Clojure](clojure)
-* [Elm](elm)
-* [Go](golang)
-* [Kotlin](kotlin)
-* [Racket](racket)
-* [ReasonML](reasonml)
-* [Rust](rust)
-* [TypeScript](typescript)
+- [Clojure](clojure)
+- [Elm](elm)
+- [Go](golang)
+- [Kotlin](kotlin)
+- [Python](python)
+- [Racket](racket)
+- [ReasonML](reasonml)
+- [Rust](rust)
+- [TypeScript](typescript)
 
 It's also a handy repository where I can fetch a basic project scaffold with unit test support without having to waste time with configuration.
 
