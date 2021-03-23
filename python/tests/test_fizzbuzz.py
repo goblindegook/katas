@@ -1,4 +1,4 @@
-from fizzbuzz import fizzbuzz
+from katas.fizzbuzz import fizzbuzz
 
 
 def test_fizz():
