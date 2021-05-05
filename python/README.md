@@ -2,18 +2,23 @@
 
 ## Installation
 
-Clone the repository and navigate to the `python` folder.
+Clone the repository, navigate to the `python` folder and install dependencies
+using Poetry:
+
+```
+$ poetry install
+```
 
 ## Running tests
 
 To run tests once, execute:
 
 ```
-$ pytest
+$ poetry run pytest
 ```
 
 To run tests in watch mode, execute:
 
 ```
-$ ptw
+$ poetry run ptw
 ```

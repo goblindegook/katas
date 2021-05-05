@@ -1,8 +1,11 @@
-def fizzbuzz(start, end):
+from typing import List
+
+
+def fizzbuzz(start: int, end: int) -> List[int]:
     return [convert(x) for x in range(start, end + 1)]
 
 
-def convert(n):
+def convert(n: int) -> str:
     if n % 3 == 0 and n % 5 == 0:
         return 'fizzbuzz'
     elif n % 5 == 0:
