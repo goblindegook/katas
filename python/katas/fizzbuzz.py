@@ -7,10 +7,10 @@ def fizzbuzz(start: int, end: int) -> List[int]:
 
 def convert(n: int) -> str:
     if n % 3 == 0 and n % 5 == 0:
-        return 'fizzbuzz'
+        return "fizzbuzz"
     elif n % 5 == 0:
-        return 'buzz'
+        return "buzz"
     elif n % 3 == 0:
-        return 'fizz'
+        return "fizz"
     else:
-        return f'{n}'
+        return f"{n}"
