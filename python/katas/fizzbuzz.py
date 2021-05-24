@@ -1,7 +1,7 @@
 from typing import List
 
 
-def fizzbuzz(start: int, end: int) -> List[int]:
+def fizzbuzz(start: int, end: int) -> List[str]:
     return [convert(x) for x in range(start, end + 1)]
 
 
