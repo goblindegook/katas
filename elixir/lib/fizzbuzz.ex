@@ -1,5 +1,5 @@
 defmodule Fizzbuzz do
-  def convert(n) do
+  defp convert(n) do
     case {rem(n, 3), rem(n, 5), n} do
       {0, 0, _} -> "fizzbuzz"
       {_, 0, _} -> "buzz"
