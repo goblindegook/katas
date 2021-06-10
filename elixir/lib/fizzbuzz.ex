@@ -9,6 +9,6 @@ defmodule Fizzbuzz do
   end
 
   def fizzbuzz(start, finish) do
-    Enum.map(start..finish, fn n -> convert(n) end)
+    for n <- start..finish, do: convert(n)
   end
 end
