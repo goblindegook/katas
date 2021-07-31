@@ -1,18 +1,14 @@
 defmodule BankOcr do
-  defp read_digit(digit),
-    do:
-      (case digit do
-         " _ | ||_|" -> "0"
-         "     |  |" -> "1"
-         " _  _||_ " -> "2"
-         " _  _| _|" -> "3"
-         "   |_|  |" -> "4"
-         " _ |_  _|" -> "5"
-         " _ |_ |_|" -> "6"
-         " _   |  |" -> "7"
-         " _ |_||_|" -> "8"
-         " _ |_| _|" -> "9"
-       end)
+  defp digit(" _ | ||_|"), do: "0"
+  defp digit("     |  |"), do: "1"
+  defp digit(" _  _||_ "), do: "2"
+  defp digit(" _  _| _|"), do: "3"
+  defp digit("   |_|  |"), do: "4"
+  defp digit(" _ |_  _|"), do: "5"
+  defp digit(" _ |_ |_|"), do: "6"
+  defp digit(" _   |  |"), do: "7"
+  defp digit(" _ |_||_|"), do: "8"
+  defp digit(" _ |_| _|"), do: "9"
 
   @spec read_entry(String.t()) :: String.t()
   def read_entry(entry),
@@ -26,7 +22,7 @@ defmodule BankOcr do
       |> Enum.map(&elem(&1, 0))
       |> Enum.chunk_every(3)
       |> Enum.map(&Enum.join/1)
-      |> Enum.map(&read_digit/1)
+      |> Enum.map(&digit/1)
       |> Enum.join()
 
   @spec is_valid(String.t()) :: boolean()
